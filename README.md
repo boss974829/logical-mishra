@@ -1,8 +1,14 @@
-# Logical Mishra
+# Rational Mishra
 
-One hundred talks from [Rational Mishra](https://www.youtube.com/@Rational_Mishra), set in five parts.
+<p align="center">
+  <img src="https://boss974829.github.io/mishra/mishra-bg.jpg" alt="Rational Mishra" width="280" />
+</p>
+
+Five-part phone plan from [Rational Mishra](https://www.youtube.com/@Rational_Mishra)'s talks. His public photo plays, animated, behind the plan.
 
 **Open it:** https://boss974829.github.io/mishra/
+
+**Android:** [RationalMishra.apk](https://github.com/boss974829/rational-mishra/releases/download/v1.1/RationalMishra.apk)
 
 | Part | Rank | What it is |
 | --- | --- | --- |
