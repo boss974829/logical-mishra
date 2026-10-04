@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="theme-color" content="#0c0e11"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="Logical Mishra"/>
+<title>Logical Mishra</title>
+<meta name="description" content="Beginner to pro. Rational Mishra's talks, one step at a time."/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Outfit:wght@400;500;600&display=swap"/>
+<style>
+:root{color-scheme:dark;--bg:#0c0e11;--fg:#efe8dc;--muted:#a39b90;--ember:#e0703a;--line:#2c3138;--surface:#15181c}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Outfit,system-ui,sans-serif;line-height:1.45}
+button,a{font:inherit;color:inherit}button{cursor:pointer;background:none;border:0}
+.philo{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.philo i,.philo b{position:absolute;left:50%;top:38%;border:1px solid rgba(224,112,58,.35);border-radius:999px}
+.philo i:nth-child(1){width:16rem;height:16rem;margin:-8rem 0 0 -8rem;animation:orbit 48s linear infinite}
+.philo i:nth-child(2){width:26rem;height:26rem;margin:-13rem 0 0 -13rem;animation:orbit 72s linear infinite reverse;border-color:rgba(239,232,220,.12)}
+.philo i:nth-child(3){width:38rem;height:38rem;margin:-19rem 0 0 -19rem;animation:orbit 96s linear infinite;border-style:dashed;border-color:rgba(224,112,58,.18)}
+.philo b{width:.4rem;height:.4rem;margin:-.2rem 0 0 -.2rem;background:var(--ember);border:0;animation:breathe 5.5s ease-in-out infinite}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes breathe{50%{transform:scale(1.8);opacity:.45}}
+.app{position:relative;z-index:1;max-width:32rem;margin:0 auto;min-height:100svh;display:flex;flex-direction:column;padding-bottom:5.5rem}
+header{display:flex;align-items:flex-end;justify-content:space-between;padding:1rem 1rem .6rem}
+.kicker{margin:0;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;font-weight:600;color:var(--ember)}
+h1{margin:0;font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:2.4rem;line-height:1}
+h2{margin:.3rem 0 0;font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:2.6rem;line-height:.95}
+.channel{border:1px solid var(--line);padding:.45rem .7rem;text-decoration:none;font-size:.9rem}
+.bar{height:4px;margin:0 1rem;background:var(--line)}.bar i{display:block;height:100%;background:var(--ember);width:0}
+.meta{margin:.45rem 1rem 0;color:var(--muted);font-size:.78rem}
+main{padding:1rem}
+.card{border:1px solid var(--line);background:rgba(21,24,28,.86);padding:1rem;margin-top:1rem}
+.muted{color:var(--muted)}
+.primary{display:inline-flex;align-items:center;min-height:44px;margin-top:1rem;background:var(--ember);color:var(--bg);padding:0 1rem;font-weight:600}
+.primary:disabled{opacity:.5}
+.row{display:flex;gap:.7rem;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:rgba(12,14,17,.7);min-height:44px;padding:.4rem .65rem;margin-top:.45rem}
+.n{width:1.7rem;height:1.7rem;border:1px solid var(--line);display:grid;place-items:center;font-size:.75rem;flex:none}
+.n.on{border-color:var(--ember);color:var(--ember)}
+.chips{display:flex;gap:.4rem;overflow:auto;padding-bottom:.7rem}
+.chips button{flex:none;border:1px solid var(--line);color:var(--muted);padding:.45rem .7rem;font-size:.75rem}
+.chips button.on{border-color:var(--ember);color:var(--fg)}
+ol{list-style:none;padding:0;margin:.8rem 0 0}
+ol li{border:1px solid var(--line);padding:.7rem .8rem;margin-top:.45rem}
+ol li.now{border-color:var(--ember);background:rgba(21,24,28,.86)}
+.stepk{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ember);font-weight:600}
+iframe{width:100%;aspect-ratio:16/9;border:0;background:#000;margin-top:1rem}
+.note{color:var(--muted);font-size:.75rem}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:3;display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid var(--line);background:rgba(12,14,17,.96);padding-bottom:env(safe-area-inset-bottom)}
+nav button{min-height:56px;color:var(--muted);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.15rem;font-size:.72rem}
+nav button.on{color:var(--ember)}
+@media(prefers-reduced-motion:reduce){.philo i,.philo b{animation:none}}
+</style>
+</head>
+<body>
+<div class="philo" aria-hidden="true"><i></i><i></i><i></i><b></b></div>
+<div class="app">
+  <header>
+    <div><p class="kicker">Beginner to pro</p><h1>Logical Mishra</h1></div>
+    <a class="channel" href="https://www.youtube.com/@Rational_Mishra" target="_blank" rel="noreferrer">Channel</a>
+  </header>
+  <div class="bar"><i id="meter"></i></div>
+  <p class="meta" id="meta"></p>
+  <main id="main"></main>
+</div>
+<nav>
+  <button type="button" id="tab-today">Today</button>
+  <button type="button" id="tab-plan">Plan</button>
+  <button type="button" id="tab-step">Step</button>
+</nav>
+<script>
+const pack = {"ranks":[{"id":"beginner","name":"Beginner","aim":"See the life you are actually living before you try to upgrade it."},{"id":"builder","name":"Builder","aim":"Train the mind other people meet. Calm is a practice."},{"id":"pro","name":"Pro","aim":"Work, money, and attention. A day you can stand in."}],"talks":[{"id":"own-life","rank":"beginner","title":"Live one day that is yours","talk":"You never lived for yourself","youtubeId":"oMY0fmiS1XQ","minutes":"15 min","steps":[{"title":"Watch once","detail":"Play the talk with nothing else open. When it ends, write the one expectation you are still living for."},{"title":"Name the owner","detail":"Whose approval sets tomorrow: a parent, a boss, a friend, a crowd. Write the name. Vague 'society' does not count."},{"title":"Keep one hour","detail":"Block one hour this week that is not for them. A walk, a skill, or silence. Do not announce it."},{"title":"Check the evening","detail":"At night, one line: did that hour happen. If it did not, the talk was entertainment."}]},{"id":"virtue","rank":"beginner","title":"Don't call a weakness a virtue","talk":"Society dresses weakness up as greatness","youtubeId":"Z_6JH5xkEys","minutes":"22 min","steps":[{"title":"Watch for the costume","detail":"Listen for the habit he says people praise so they never have to change it. Write yours in one sentence."},{"title":"Separate kindness from fear","detail":"Kindness stays. The yes you give because you are afraid of a no does not. Mark one of those yeses from this month."},{"title":"Replace it once","detail":"The next time that costume shows up, do the harder honest thing. One time is the implementation."}]},{"id":"experts","rank":"beginner","title":"Stop borrowing a brain","talk":"Stop worshipping intellectuals","youtubeId":"kEPHatVPiDA","minutes":"28 min","steps":[{"title":"Watch, then list","detail":"After the talk, list three voices you treat as final: a guru, a channel, a friend, a headline."},{"title":"Ask what they cannot know","detail":"Next to each name, write the part of your life they have never lived. That part is yours to decide."},{"title":"One decision without them","detail":"Make one small decision this week without opening their video or their chat first."},{"title":"Keep the useful, drop the throne","detail":"You may still learn from people. You do not hand them the steering. Write that line where you study."}]},{"id":"first","rank":"beginner","title":"Know this before a better life","talk":"Want a better life? Know this first","youtubeId":"ujSQzITmqWg","minutes":"23 min","steps":[{"title":"Watch for the first condition","detail":"He says a better life has a condition people skip. Write what he says must come before the upgrade."},{"title":"Apply it to this week","detail":"Turn that condition into one behavior you can do before Sunday. Not a new personality. A behavior."},{"title":"Do it before the next talk","detail":"The next video stays locked in your own mind until this one behavior has happened once."}]},{"id":"alone","rank":"beginner","title":"Learn to be alone without hiding","talk":"You can live well on your own","youtubeId":"c_cpF8zEbn4","minutes":"15 min","steps":[{"title":"Watch the solitude, not the insult","detail":"The useful point is that a man can be okay without a crowd. Skip any line that only mocks people who believe."},{"title":"Sit with no input","detail":"Twenty minutes. No video, no chat, no music. Notice the urge to be entertained. That urge is the lesson."},{"title":"One evening alone on purpose","detail":"Plan it. Eat, walk, or read. Solitude you choose is training. Solitude you use to avoid everyone is hiding."}]},{"id":"ignored","rank":"builder","title":"If they look past you","talk":"Why everyone ignores you","youtubeId":"NScuTeTfNj8","minutes":"17 min","steps":[{"title":"Watch and mark the cause","detail":"Write whether the talk points at your voice, your need, or your absence of a life. Be specific."},{"title":"Fix the entrance","detail":"Tomorrow, greet two people while looking at them. Shoulders down. No joke to fill the silence."},{"title":"Bring something","detail":"Have one real thing you did that day before you ask for attention. A workout, a page, a finished task."}]},{"id":"respect","rank":"builder","title":"Respect is behavior","talk":"Why people don't respect you","youtubeId":"WVxhZCdacNY","minutes":"51 min","steps":[{"title":"Watch in two sittings","detail":"This one is long. First half today, second half tomorrow. Note one behavior he ties to respect."},{"title":"Stop the leak","detail":"Pick the leak: breaking small promises, over-explaining, or laughing at your own standard. Stop it for three days."},{"title":"Keep one promise in public","detail":"Tell one person a time you will do a thing, then do it at that time. Respect starts as reliability."}]},{"id":"five","rank":"builder","title":"Five rules of a strong manner","talk":"Strong and attractive personality, five rules","youtubeId":"bnr7MbDUMs8","minutes":"30 min","steps":[{"title":"Watch and write his five","detail":"Pause when he names each rule. Write them in his words, short. Do not invent a sixth."},{"title":"Emotional control first","detail":"He treats this as the hard one. The next time anger or envy shows up, wait ten breaths before you speak."},{"title":"Drop one bid for approval","detail":"Do a good thing and do not post it or narrate it. Attraction he describes is a life, not a performance."},{"title":"Repeat for four days","detail":"Same rule, four days. A personality is the repeat, not the video."}]},{"id":"years","rank":"builder","title":"Eight years, not eight days","talk":"How I changed my personality in 8 years","youtubeId":"Yb5cOeuOXFs","minutes":"20 min","steps":[{"title":"Watch the timeline","detail":"Note the year-count. Write where you are pretending a month will do an eight-year job."},{"title":"Pick the trait","detail":"One trait from his story you will train: calm, speech, body, or keeping your word. Only one."},{"title":"A daily rep","detail":"Attach it to something you already do. After you brush your teeth, the rep happens. Ten minutes, every day."}]},{"id":"career","rank":"pro","title":"A career you can stand","talk":"This can save your future and your career","youtubeId":"rw4Ch9wctwA","minutes":"17 min","steps":[{"title":"Watch, then write the warning","detail":"One sentence: what he says will waste the next ten years if you ignore it."},{"title":"Separate wish from offer","detail":"Write what you want your days to feel like, and what a stranger would pay you for next month. Both. Do not mix them."},{"title":"One skill hour","detail":"Put five hours on this week's calendar for the skill that connects the wish to the offer. Do the first hour today."}]},{"id":"train-rich","rank":"pro","title":"Train for power, then money","talk":"How I trained myself to become powerful and rich","youtubeId":"jYN7b5T6hoU","minutes":"21 min","steps":[{"title":"Watch the order","detail":"He trains himself before the money shows. Write the order he actually used, not the result."},{"title":"Body and books this week","detail":"Three training days and three hours of a skill. Log both. Power he means is capacity, not a mood."},{"title":"Keep a number","detail":"What you earned, what you kept. If the number did not move, the identity did not either."}]},{"id":"money","rank":"pro","title":"Money is a tool, not a mood","talk":"Can money buy happiness?","youtubeId":"Xqqr5kzTDGk","minutes":"14 min","steps":[{"title":"Watch and answer","detail":"After the talk, write your own answer in two lines. His punchline is not yours until you test it."},{"title":"Buy one relief, not one show","detail":"If you spend this week, spend on something that removes a real worry: food, health, a debt, a tool. Not applause."},{"title":"Name what money cannot do","detail":"One line: the peace you still have to practice when the bill is paid. That is the psychology of the talk."}]},{"id":"leave","rank":"pro","title":"Leave a job only with a life","talk":"Why I left a 16 LPA job","youtubeId":"u1M9ExnOMlI","minutes":"21 min","steps":[{"title":"Watch his reason, not as an order","detail":"Write why he left. Then write why you would stay. Both can be adult."},{"title":"Do not resign from a video","detail":"If you need the salary, the implementation is evenings, not a notice letter."},{"title":"A ninety-day page","detail":"Where you sleep, what pays, what you train. If you cannot fill the page, you are not ready to leave."}]},{"id":"present","rank":"pro","title":"Be here, and don't just believe","talk":"Don't just believe. Live in the present","youtubeId":"ip0Jwvx-L64","minutes":"23 min","steps":[{"title":"Watch without collecting a guru","detail":"The talk uses Osho. Take the practice, not a new master. You already did the talk about borrowed brains."},{"title":"Ten minutes of the actual room","detail":"Sit. Feel the chair, the breath, the sound. When the mind leaves, bring it back. That is the whole method."},{"title":"One task with a single tab","detail":"Do today's real work with the phone in another room. Presence is not a quote. It is the hour you did not split."},{"title":"Close the ladder","detail":"Write what changed from the first talk to this one. If nothing in the week changed, start again at Beginner."}]}]};
+const talks = pack.talks, ranks = pack.ranks;
+const key = "mishra-steps";
+let progress = {};
+try { progress = JSON.parse(localStorage.getItem(key) || "{}"); } catch (e) { progress = {}; }
+let tab = "today";
+let activeId = talks[0].id;
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ "&":"&","<":"<",">":">" }[c]));
+function at(talk){ return Math.min(progress[talk.id] || 0, talk.steps.length); }
+function save(){ localStorage.setItem(key, JSON.stringify(progress)); }
+function current(){ return talks.find((t) => at(t) < t.steps.length) || talks[talks.length - 1]; }
+function openTalk(id){ activeId = id; tab = "step"; render(); }
+function render(){
+  const finished = talks.filter((t) => at(t) >= t.steps.length).length;
+  document.getElementById("meter").style.width = (finished / talks.length * 100) + "%";
+  document.getElementById("meta").textContent = finished + " of " + talks.length + " talks lived · Rational Mishra";
+  document.getElementById("tab-today").className = tab === "today" ? "on" : "";
+  document.getElementById("tab-plan").className = tab === "plan" ? "on" : "";
+  document.getElementById("tab-step").className = tab === "step" ? "on" : "";
+  const main = document.getElementById("main");
+  if (tab === "today") {
+    const talk = current();
+    const rank = ranks.find((r) => r.id === talk.rank);
+    const n = at(talk);
+    const step = talk.steps[Math.min(n, talk.steps.length - 1)];
+    main.innerHTML = '<p class="kicker">' + esc(rank.name) + '</p><h2>' + esc(talk.title) + '</h2><p class="muted">' + esc(rank.aim) + '</p><div class="card"><p class="stepk">Step ' + Math.min(n + 1, talk.steps.length) + ' of ' + talk.steps.length + '</p><p style="font-size:1.15rem;margin:.4rem 0 0">' + esc(step.title) + '</p><p class="muted">' + esc(step.detail) + '</p></div><button class="primary" id="go" type="button">Do this step</button>';
+    document.getElementById("go").onclick = () => openTalk(talk.id);
+    return;
+  }
+  if (tab === "plan") {
+    main.innerHTML = ranks.map((rank) => {
+      const group = talks.filter((t) => t.rank === rank.id);
+      const done = group.filter((t) => at(t) >= t.steps.length).length;
+      return '<section style="margin-bottom:1.3rem"><p class="kicker" style="color:var(--muted)">' + esc(rank.name) + ' <span style="color:var(--ember)">' + done + '/' + group.length + '</span></p><p class="muted">' + esc(rank.aim) + '</p>' +
+        group.map((talk, i) => {
+          const n = at(talk); const complete = n >= talk.steps.length;
+          return '<button class="row" type="button" data-id="' + talk.id + '"><span class="n ' + (complete ? "on" : "") + '">' + (complete ? "✓" : i + 1) + '</span><span><b style="font-weight:500">' + esc(talk.title) + '</b><br><span class="muted" style="font-size:.75rem">' + esc(talk.minutes) + ' · step ' + Math.min(n + 1, talk.steps.length) + '/' + talk.steps.length + '</span></span></button>';
+        }).join("") + '</section>';
+    }).join("");
+    main.querySelectorAll("[data-id]").forEach((btn) => { btn.onclick = () => openTalk(btn.dataset.id); });
+    return;
+  }
+  const talk = talks.find((t) => t.id === activeId) || talks[0];
+  const rank = ranks.find((r) => r.id === talk.rank);
+  const logged = at(talk);
+  const finishedTalk = logged >= talk.steps.length;
+  const stepNumber = Math.min(logged, talk.steps.length - 1);
+  const step = talk.steps[stepNumber];
+  main.innerHTML = '<div class="chips">' + talks.map((t) => '<button type="button" class="' + (t.id === talk.id ? "on" : "") + '" data-id="' + t.id + '">' + esc(t.title) + '</button>').join("") + '</div>' +
+    '<p class="kicker">' + esc(rank.name) + ' · ' + esc(talk.minutes) + '</p><h2>' + esc(talk.title) + '</h2><p class="muted">' + esc(rank.aim) + '</p>' +
+    '<ol>' + talk.steps.map((item, i) => {
+      const state = i < logged ? "done" : i === logged ? "now" : "wait";
+      return '<li class="' + (state === "now" ? "now" : "") + '"><p class="stepk">' + (state === "done" ? "Done" : "Step " + (i + 1)) + '</p><p style="margin:.2rem 0 0">' + esc(item.title) + '</p>' + (state === "now" ? '<p class="muted">' + esc(item.detail) + '</p>' : "") + '</li>';
+    }).join("") + '</ol>' +
+    '<button class="primary" id="did" type="button" ' + (finishedTalk ? "disabled" : "") + '>' + (finishedTalk ? "This talk is lived" : "I did step " + (stepNumber + 1) + ": " + esc(step.title)) + '</button>' +
+    '<iframe src="https://www.youtube-nocookie.com/embed/' + talk.youtubeId + '" title="' + esc(talk.talk) + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>' +
+    '<p class="note">' + esc(talk.talk) + '. Rational Mishra. A study guide, not his channel.</p>';
+  main.querySelectorAll("[data-id]").forEach((btn) => { btn.onclick = () => openTalk(btn.dataset.id); });
+  const did = document.getElementById("did");
+  if (did && !finishedTalk) did.onclick = () => {
+    progress[talk.id] = logged + 1;
+    save();
+    if (progress[talk.id] >= talk.steps.length) {
+      const next = talks[talks.findIndex((t) => t.id === talk.id) + 1];
+      if (next) activeId = next.id;
+    }
+    render();
+  };
+}
+document.getElementById("tab-today").onclick = () => { tab = "today"; render(); };
+document.getElementById("tab-plan").onclick = () => { tab = "plan"; render(); };
+document.getElementById("tab-step").onclick = () => { tab = "step"; render(); };
+render();
+</script>
+</body>
+</html>
